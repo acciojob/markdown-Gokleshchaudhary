@@ -2,35 +2,26 @@ import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 function MarkdownEditor() {
-  const [text, setText] = useState('');
+  const [markdown, setMarkdown] = useState('');
   const [preview, setPreview] = useState('');
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setPreview(text);
-    }, 300); // simulate loading
-
-    return () => clearTimeout(timeout);
-  }, [text]);
+    setPreview(markdown);
+  }, [markdown]);
 
   return (
-    <>
+    <div className="editor-container">
       <textarea
         className="textarea"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Write Markdown here..."
+        value={markdown}
+        onChange={(e) => setMarkdown(e.target.value)}
+        placeholder="Enter your markdown here..."
       />
       <div className="preview">
-        {text !== preview ? (
-          <p className="loading">Loading preview...</p>
-        ) : (
-          <ReactMarkdown>{preview}</ReactMarkdown>
-        )}
+        {preview ? <ReactMarkdown>{preview}</ReactMarkdown> : <p className="loading">Loading preview...</p>}
       </div>
-    </>
+    </div>
   );
 }
 
 export default MarkdownEditor;
-
