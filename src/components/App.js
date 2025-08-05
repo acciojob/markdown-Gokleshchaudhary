@@ -1,6 +1,6 @@
-import React from 'react';
-import './styles.css';
-import MarkdownEditor from './MarkdownEditor';
+import React from "react";
+import MarkdownEditor from "./MarkdownEditor";
+import "./styles.css";
 
 function App() {
   return (
